@@ -1,0 +1,23 @@
+{
+  "name": "node-framework",
+  "version": "1.0.0",
+  "description": "A light weight framework for nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Vishnu Singh",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.2",
+    "jsonwebtoken": "^7.2.1",
+    "mysql": "^2.13.0",
+    "validator": "^6.2.1"
+  }
+}
