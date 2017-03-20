@@ -57,10 +57,11 @@
 
 module.exports = {
     "api": {
-        "*": true,
+        "*": "Auth",
         "User": {
             "*": true,
-            "create": "uniqueEmail"
+            "create": "uniqueEmail",
+            "update": "Auth"
         }
     },
     "web": {

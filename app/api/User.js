@@ -85,7 +85,65 @@ module.exports = {
         }
     },
     update: (req, res) => {
+        const jwt = require('jsonwebtoken');
+        var data = {}, valid = false;
 
+        var sendToken = () => {
+            var query = "SELECT * FROM users WHERE email=?";
+            var email = data.email || req.jwt.email;
+            server.pool.query(query, [email], (err, result, fields) => {
+                if (err || !result.length) {
+                    console.log(err);
+                    res.json({
+                        success: false,
+                        message: "Unable to genearate token."
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        message: "updated!",
+                        token: jwt.sign({
+                            userId: result[0].userId,
+                            name: result[0].name,
+                            email: result[0].email
+                        }, server.locals.jwt.secret)
+                    });
+                }
+            });
+        }
+
+        if (req.body.name) {
+            valid = true;
+            data.name = req.body.name;
+        }
+        if (req.body.email) {
+            valid = true;
+            data.email = req.body.email;
+        }
+        if (req.body.password) {
+            valid = true;
+            data.password = req.body.password;
+        }
+
+        if (valid) {
+            var query = "UPDATE users SET ? WHERE email='" + req.jwt.email + "'";
+            server.pool.query(query, data, (err, result, feilds) => {
+                if (err) {
+                    console.log(err);
+                    res.json({
+                        success: false,
+                        message: "Unable to update user."
+                    });
+                } else {
+                    sendToken();
+                }
+            });
+        } else {
+            res.json({
+                success: false,
+                message: "Invalid input!"
+            });
+        }
     },
     del: (req, res) => {
 
