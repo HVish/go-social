@@ -146,6 +146,9 @@ module.exports = {
         }
     },
     del: (req, res) => {
-
+        res.json({
+            success: false,
+            message: "This feature is disabled!"
+        });
     }
 };
