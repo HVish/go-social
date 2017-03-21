@@ -35,7 +35,9 @@ module.exports = {
         "PUT /user": "User.update",
         "DELETE /user": "User.del",
         "POST /campaign": "Campaign.create",
-        "GET /campaign": "Campaign.get"
+        "GET /campaign": "Campaign.get",
+        "POST /vote": "Vote.create",
+        "GET /votes": "Vote.get"
     },
     web: {
         // all website routes

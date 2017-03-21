@@ -62,6 +62,10 @@ module.exports = {
             "*": true,
             "create": "uniqueEmail",
             "update": "Auth"
+        },
+        "Vote": {
+            "*": "Auth",
+            "create": ["Auth", "uniqueVote"]
         }
     },
     "web": {
