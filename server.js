@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const config = {
     locals: require('./config/locals.js'),
@@ -72,10 +73,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // allow cors
-app.use((req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
+app.use(cors());
 
 // register policies
 let registerPolicies = (policyName, method, endpoint) => {
