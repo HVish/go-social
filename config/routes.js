@@ -36,7 +36,7 @@ module.exports = {
         "DELETE /user": "User.del",
         "POST /campaign": "Campaign.create",
         "GET /campaign": "Campaign.get",
-        "POST /vote": "Vote.create",
+        "POST /upvote": "Vote.create",
         "GET /votes": "Vote.get"
     },
     web: {
