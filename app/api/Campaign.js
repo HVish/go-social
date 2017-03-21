@@ -38,7 +38,10 @@ module.exports = {
         }
     },
     get: (req, res) => {
-        var query = "SELECT * FROM campaigns WHERE createdAt>?";
+        var query = "SELECT campaigns.*, (\
+                SELECT COUNT(votes.voteId) FROM votes \
+                WHERE votes.campaignId = campaigns.campaignId\
+            ) AS votes FROM campaigns WHERE createdAt>?";
         var currDate = new Date();
         var startDate = new Date(currDate.getFullYear(), currDate.getMonth(), 1);
         server.pool.query(query, [
