@@ -38,20 +38,28 @@ module.exports = {
         }
     },
     get: (req, res) => {
-        var query = "SELECT * FROM campaigns WHERE createdAt=?";
+        var query = "SELECT * FROM campaigns WHERE createdAt>?";
+        var currDate = new Date();
+        var startDate = new Date(currDate.getFullYear(), currDate.getMonth(), 1);
         server.pool.query(query, [
-            // TODO: get month starting datetime
+            startDate
         ], (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.json({
                     success: false,
-                    message: "Unable to create campaign."
+                    message: "Unable to get campaign."
+                });
+            } else if (!result.length) {
+                res.json({
+                    success: false,
+                    message: "No results found."
                 });
             } else {
                 res.json({
                     success: true,
-                    message: "Campaign created!"
+                    message: "Found result.",
+                    data: result
                 });
             }
         });
