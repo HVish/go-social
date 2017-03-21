@@ -37,7 +37,8 @@ module.exports = {
         "POST /campaign": "Campaign.create",
         "GET /campaign": "Campaign.get",
         "POST /upvote": "Vote.create",
-        "GET /votes": "Vote.get"
+        "GET /votes": "Vote.get",
+        "POST /payment-response": "Donate.emitraResponse"
     },
     web: {
         // all website routes

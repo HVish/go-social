@@ -66,7 +66,8 @@ module.exports = {
         "Vote": {
             "*": "Auth",
             "create": ["Auth", "uniqueVote"]
-        }
+        },
+        "Donate": true
     },
     "web": {
         "*": true
